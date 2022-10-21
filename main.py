@@ -50,7 +50,7 @@ class Item:
             return False
 
     def __repr__(self):
-        return f"Item('{self.name}', {self.price}, {self.quantity})"
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
 
 # item1 = Item('Phone', 100, 1)
@@ -75,10 +75,33 @@ class Item:
 # print(Item.is_integer(7.0))
 
 class Phone(Item):
-    pass
+    # all = []
+
+    def __init__(self, name: str, price: float, quantity=0, broken_phones=0):
+        # Call to super functions to have access to all attributes
+        super().__init__(
+            name, price, quantity
+        )
+        # Run validations to the received arguments
+        # assert price >= 0, f'Price {price} is not greater than 0.'
+        # assert quantity >= 0, f'Quantity {quantity} is not greater than 0.'
+        assert broken_phones >= 0, f'Broken phones {broken_phones} is not greater or equal than 0.'
+
+        # Assign to self object
+        # self.name = name
+        # self.price = price
+        # self.quantity = quantity
+        self.broken_phones = broken_phones
+
+        # Actions to execute
+        # Phone.all.append(self)
 
 
-phone1 = Phone("jscPhonev10", 500, 5)
-phone1.broken_phones = 1
-phone2 = Phone("jscPhonev20", 700, 5)
-phone2.broken_phones = 1
+# phone1 = Phone("jscPhonev10", 500, 5, 1)
+# phone1.broken_phones = 1
+# print(phone1.calculate_total_price())
+# phone2 = Phone("jscPhonev20", 700, 5, 1)
+# phone2.broken_phones = 1
+
+# print(Item.all)
+# print(Phone.all)
